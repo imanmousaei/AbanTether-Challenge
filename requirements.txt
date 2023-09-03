@@ -1,0 +1,11 @@
+django
+gunicorn
+psycopg2-binary
+Pillow
+djangorestframework
+django-excel-to-model
+celery
+redis
+django-cors-headers
+openpyxl
+pandas
