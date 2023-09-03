@@ -1,0 +1,13 @@
+# enviroments
+venv
+env
+
+# py cache
+*.pyc
+
+# editor files
+.idea
+.vscode
+
+# todo: remove
+*.md
