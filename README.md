@@ -30,8 +30,8 @@
 ## Working with server
 [Working with current server](./VPS.md)
 
-## TODO
-- export db periodically (e.g. every 12h)
-- redirect port 80 to react(port 3000 currently)
-- redirect /backend to port 8000(django)
-- deploy kubernetes (if you scale up)
+## Run
+- `make migrate`
+- `make admin`
+- `make server`
+- go to `http://127.0.0.1:8000/admin/`

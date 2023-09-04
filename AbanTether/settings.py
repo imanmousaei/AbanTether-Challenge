@@ -29,7 +29,7 @@ DEBUG = True
 
 TEST = False
 
-APPEND_SLASH = False
+APPEND_SLASH = True
 
 ALLOWED_HOSTS = ['abantether.com', '185.166.104.3', '127.0.0.1', 'localhost']
 

@@ -7,7 +7,7 @@ from exchange.models import CoinBalance
 
 class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    phone_number = models.CharField(max_length=11, unique=True, verbose_name=_('Phone Number'))
+    phone_number = models.CharField(max_length=11, null=True, blank=True, verbose_name=_('Phone Number'))
     national_id = models.CharField(max_length=10, null=True, blank=True, verbose_name=_('Melli Code'))
     city = models.CharField(max_length=30, null=True, blank=True, verbose_name=_('City'))
     level = models.PositiveIntegerField(default=1, verbose_name=_('Authentication Level'))
