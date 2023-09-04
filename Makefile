@@ -5,10 +5,10 @@ server:
 	python manage.py runserver
 
 test:
-	python manage.py test
+	python tests.py
 
 migrate:
-	python manage.py makemigrations && python manage.py migrate
+	python manage.py makemigrations && python manage.py migrate && python manage.py migrate --run-syncdb
 
 admin:
 	python manage.py createsuperuser

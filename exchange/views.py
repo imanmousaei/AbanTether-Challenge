@@ -1,38 +1,46 @@
 import json
 
-from rest_framework.parsers import MultiPartParser
+from django.contrib.auth.models import User
+from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework import status
-from django.contrib.auth.models import User
-from django.db import transaction
 
-from exchange.models import Coin
 from exchange import consts
+from exchange.models import *
+from users.models import *
 
 
-
-def body_parser(request):
-    body_unicode = request.body.decode('utf-8')
-    body = json.loads(body_unicode)
-    return body
-
+TEST = False
 
 class PlaceOrderView(APIView):
+    def get(self, request):
+        print('hi')
+        return Response({}, status.HTTP_200_OK)
+
     def post(self, request):
-        body = body_parser(request)
+        if TEST == True:
+            usdt = Coin.objects.create(name='Tether', symbol='USDT', price_in_usdt=1)
+            btc = Coin.objects.create(name='Bitcoin', symbol='BTC', price_in_usdt=25866)
+
+            user = User.objects.create(first_name='Iman', last_name='Mousaei', username='imanmousaei')
+            coin_balance = CoinBalance.objects.create(balance=10000000)
+            coin_balance.coin.add(usdt)
+            Customer.objects.create(user=user, coin_balance=coin_balance)
+            
+        body = request.POST
         
         symbol = body.get('symbol')
         amount = body.get('amount')
-        user_id = body.get('user_id')
+        username = body.get('username')
         
         coin = Coin.objects.get(symbol=symbol)
-        user = User.objects.get(id=user_id)
+        user = User.objects.get(username=username)
+        customer = user.customer
         
         price_in_usdt = coin.price_in_usdt
             
         # select_for_update is used to lock rows until end of transaction
-        user_base_pair = user.coin_balance.select_for_update().get(symbol=consts.base_pair)
+        user_base_pair = customer.coin_balance.select_for_update().get(symbol=consts.base_pair)
         amount_in_usdt = price_in_usdt * amount
         
         if user_base_pair.balance < amount_in_usdt:

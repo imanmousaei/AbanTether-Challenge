@@ -9,4 +9,3 @@ redis
 django-cors-headers
 openpyxl
 pandas
-django-tastypie
