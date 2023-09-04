@@ -51,12 +51,9 @@ INSTALLED_APPS = [
 
     # packages
     'rest_framework',
-    'corsheaders',
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
-
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -163,11 +160,3 @@ EMAIL_PORT = 465  # 587
 # EMAIL_HOST_PASSWORD = 'jhvfyt#%#(jkbf'
 EMAIL_HOST_USER = 'contact.walletcenter@gmail.com'
 EMAIL_HOST_PASSWORD = 'B]9(!-7QjcF7.-g*'
-
-
-
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-    "http://185.202.113.253:3000",
-]

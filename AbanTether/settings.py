@@ -57,12 +57,9 @@ INSTALLED_APPS = [
 
     # packages
     'rest_framework',
-    'corsheaders',
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
-
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -108,7 +105,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'AbanTetherdb',
         'USER': 'postgres',
-        'PASSWORD': 'tar6500',
+        'PASSWORD': 'psq1234',
         'HOST': '127.0.0.1',
     }
 }
@@ -179,45 +176,44 @@ EMAIL_HOST_USER = '...@gmail.com'
 EMAIL_HOST_PASSWORD = '...'
 
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    "filters": {
-        "require_debug_false": {"()": "django.utils.log.RequireDebugFalse"},
-        "require_debug_true": {"()": "django.utils.log.RequireDebugTrue"},
-    },
-    'handlers': {
-        "console": {
-            "level": "DEBUG",
-            "class": "logging.StreamHandler",
-            "filters": ["require_debug_true"],
-        },
-        'file': {
-            'level': 'ERROR',
-            'class': 'logging.FileHandler',
-            'filename': 'static/errors/errors.log',
-        },
-        "mail_admins": {
-            "level": "ERROR",
-            "filters": ["require_debug_false"],
-            "class": "django.utils.log.AdminEmailHandler",
-            "include_html": True,
-        },
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['console', 'file'],
-            'level': 'ERROR',
-            'propagate': True,
-        },
-    },
-}
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     "filters": {
+#         "require_debug_false": {"()": "django.utils.log.RequireDebugFalse"},
+#         "require_debug_true": {"()": "django.utils.log.RequireDebugTrue"},
+#     },
+#     'handlers': {
+#         "console": {
+#             "level": "DEBUG",
+#             "class": "logging.StreamHandler",
+#             "filters": ["require_debug_true"],
+#         },
+#         'file': {
+#             'level': 'ERROR',
+#             'class': 'logging.FileHandler',
+#             'filename': 'static/errors/errors.log',
+#         },
+#         "mail_admins": {
+#             "level": "ERROR",
+#             "filters": ["require_debug_false"],
+#             "class": "django.utils.log.AdminEmailHandler",
+#             "include_html": True,
+#         },
+#     },
+#     'loggers': {
+#         'django': {
+#             'handlers': ['console', 'file'],
+#             'level': 'ERROR',
+#             'propagate': True,
+#         },
+#     },
+# }
 
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
-    "http://185.202.113.253:3000",
 ]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'

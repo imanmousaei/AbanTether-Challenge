@@ -31,6 +31,7 @@ class PlaceOrderView(APIView):
         
         price_in_usdt = coin.price_in_usdt
             
+        # select_for_update is used to lock rows until end of transaction
         user_base_pair = user.coin_balance.select_for_update().get(symbol=consts.base_pair)
         amount_in_usdt = price_in_usdt * amount
         
