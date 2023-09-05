@@ -12,5 +12,8 @@ class Coin(models.Model):
         return self.symbol
 
 class CoinBalance(models.Model):
-    coin = models.ManyToManyField(Coin)
+    coin = models.ForeignKey(Coin, on_delete=models.CASCADE, verbose_name=_('Coin'))
     balance = models.FloatField(verbose_name=_('Coin Balance'))
+    
+    def __str__(self):
+        return self.coin.symbol + ' ' + str(self.balance)
