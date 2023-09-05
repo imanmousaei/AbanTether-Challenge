@@ -16,7 +16,10 @@ pg_dump -U postgres AbanTetherdb > dbexport_1402_06_14.pgsql
 ```
 in this way dbexports are saved at : `/var/lib/postgresql`
 
-## Deploy 
+## Depoly using docker
+`docker-compose up --build`
+
+## Deploy using Nginx & Gunicorn
 [Django Deployment Document on Ubuntu with Nginx & Gunicorn](./Deploy.md)
 
 ## CI 
