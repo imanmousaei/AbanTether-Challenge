@@ -9,25 +9,14 @@ from django.db import transaction
 from exchange import consts
 from exchange.models import *
 from users.models import *
+from exchange.utils import buy_from_exchange
 
-
-FIRST_TIME = False
 
 class PlaceOrderView(APIView):
     def get(self, request):
-        print('hi')
         return Response({}, status.HTTP_200_OK)
 
     def post(self, request):
-        # used for TEST
-        if FIRST_TIME == True:
-            usdt = Coin.objects.create(name='Tether', symbol='USDT', price_in_usdt=1)
-            btc = Coin.objects.create(name='Bitcoin', symbol='BTC', price_in_usdt=25866)
-
-            user = User.objects.create(first_name='Iman', last_name='Mousaei', username='imanmousaei')
-            coin_balance = CoinBalance.objects.create(coin=usdt, balance=10000000)
-            Customer.objects.create(user=user, coin_balance=coin_balance)
-            
         body = request.POST
         
         symbol = body.get('symbol')
@@ -52,6 +41,18 @@ class PlaceOrderView(APIView):
                     'msg': 'Insufficient Balance',
                 }
                 return Response(response, status.HTTP_400_BAD_REQUEST)
+            
+            amount_to_buy = amount_in_usdt + coin.to_buy
+            if amount_to_buy < 10:
+                coin.to_buy = amount_to_buy
+                coin.save()
+            else:
+                if not buy_from_exchange(symbol, amount):
+                    response = {
+                        'success': False,
+                        'msg': 'Could not buy from exchange',
+                    }
+                    return Response(response, status.HTTP_500_INTERNAL_SERVER_ERROR)
 
             # if balance is enough:
             user_base_pair.balance -= amount_in_usdt

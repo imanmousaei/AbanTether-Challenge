@@ -107,6 +107,13 @@ DATABASES = {
         'USER': 'postgres',
         'PASSWORD': 'psq1234',
         'HOST': '127.0.0.1',
+    },
+    'test': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'test_AbanTetherdb',
+        'USER': 'postgres',
+        'PASSWORD': 'psq1234',
+        'HOST': '127.0.0.1',
     }
 }
 

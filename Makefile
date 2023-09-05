@@ -5,7 +5,7 @@ server:
 	python manage.py runserver
 
 test:
-	python tests.py
+	python manage.py migrate --database=test && python manage.py test --keepdb
 
 migrate:
 	python manage.py makemigrations && python manage.py migrate && python manage.py migrate --run-syncdb
