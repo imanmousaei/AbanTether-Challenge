@@ -8,6 +8,3 @@ env
 # editor files
 .idea
 .vscode
-
-# todo: remove
-*.md
